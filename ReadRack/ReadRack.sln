@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadRack.Backend", "ReadRac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadRack.Fronend", "ReadRack.Fronend\ReadRack.Fronend.csproj", "{4404DE3B-CE9C-4134-BBAA-3408A647E883}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadRack.Shared", "ReadRack.Shared\ReadRack.Shared.csproj", "{FA98F166-31D0-484B-842B-88C3AB95C785}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadRack.Shared", "ReadRack.Shared\ReadRack.Shared.csproj", "{FA98F166-31D0-484B-842B-88C3AB95C785}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadRack.Test", "ReadRack.Test\ReadRack.Test.csproj", "{7EC6ADA7-2887-4571-8682-A1A93CFC90EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadRack.Test", "ReadRack.Test\ReadRack.Test.csproj", "{7EC6ADA7-2887-4571-8682-A1A93CFC90EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

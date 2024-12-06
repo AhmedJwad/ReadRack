@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReadRack.Backend.Data;
 
@@ -10,9 +11,11 @@ using ReadRack.Backend.Data;
 namespace ReadRack.Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20241203151431_AdddepartmentAfterupdate")]
+    partial class AdddepartmentAfterupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,9 +56,6 @@ namespace ReadRack.Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CollegeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -63,28 +63,62 @@ namespace ReadRack.Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CollegeId");
-
                     b.HasIndex("Name")
                         .IsUnique();
 
                     b.ToTable("departments");
                 });
 
-            modelBuilder.Entity("ReadRack.Shared.Entites.Department", b =>
+            modelBuilder.Entity("ReadRack.Shared.Entites.colDepartment", b =>
                 {
-                    b.HasOne("ReadRack.Shared.Entites.College", "college")
-                        .WithMany("Departments")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CollegeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CollegeId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.ToTable("colDepartments");
+                });
+
+            modelBuilder.Entity("ReadRack.Shared.Entites.colDepartment", b =>
+                {
+                    b.HasOne("ReadRack.Shared.Entites.College", "College")
+                        .WithMany("colDepartments")
                         .HasForeignKey("CollegeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("college");
+                    b.HasOne("ReadRack.Shared.Entites.Department", "Department")
+                        .WithMany("colDepartments")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("College");
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("ReadRack.Shared.Entites.College", b =>
                 {
-                    b.Navigation("Departments");
+                    b.Navigation("colDepartments");
+                });
+
+            modelBuilder.Entity("ReadRack.Shared.Entites.Department", b =>
+                {
+                    b.Navigation("colDepartments");
                 });
 #pragma warning restore 612, 618
         }

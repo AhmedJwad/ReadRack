@@ -132,12 +132,12 @@ namespace ReadRack.Backend.Repositories.Implementations
             };
         }
 
-        public Task<ActionResponse<int>> GetTotalPagesAsync(PaginationDTO paginationDTO)
+        public virtual Task<ActionResponse<int>> GetTotalPagesAsync(PaginationDTO paginationDTO)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ActionResponse<T>> UpdateAsync(T Entity)
+        public virtual Task<ActionResponse<T>> UpdateAsync(T Entity)
         {
             throw new NotImplementedException();
         }

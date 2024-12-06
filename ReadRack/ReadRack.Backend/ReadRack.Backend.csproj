@@ -20,4 +20,8 @@
     <ProjectReference Include="..\ReadRack.Shared\ReadRack.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="images\colleges\" />
+  </ItemGroup>
+
 </Project>

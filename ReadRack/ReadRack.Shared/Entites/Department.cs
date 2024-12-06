@@ -7,21 +7,16 @@ using System.Threading.Tasks;
 
 namespace ReadRack.Shared.Entites
 {
-    public class College
+    public class Department
     {
         public int Id { get; set; }
 
-        [Display(Name = "College")]
+        [Display(Name = "Department")]
         [MaxLength(100, ErrorMessage = "Field {0} cannot be longer than {1} characters.")]
         [Required(ErrorMessage = "Field {0} is required.")]
         public string Name { get; set; } = null!;
+        public int CollegeId { get; set; }
 
-        [Display(Name = "Image")]
-        public string? Photo { get; set; }
-        public ICollection<Department>? Departments { get; set; }
-
-        [Display(Name = "Departments")]
-        public int DepartmentNumber => Departments == null || Departments.Count == 0 ? 0 : Departments.Count;
-
+        public College? college { get; set; }
     }
 }

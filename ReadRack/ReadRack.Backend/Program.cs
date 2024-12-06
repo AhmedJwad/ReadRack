@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ReadRack.Backend.Data;
+using ReadRack.Backend.Helpers;
 using ReadRack.Backend.Repositories.Implementations;
 using ReadRack.Backend.Repositories.Interfaces;
 using ReadRack.Backend.UnitsOfWork.Implementations;
@@ -14,9 +15,25 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnection"));
+builder.Services.AddTransient<SeedDb>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
+builder.Services.AddScoped<IFileStorage, FileStorage>();
+builder.Services.AddScoped<ICollegesRepository, CollegeRepository>();
+builder.Services.AddScoped<IcollegesUnitOfWork,CollegesUnitOfWork>();
+
 var app = builder.Build();
+SeedData(app);
+void SeedData(WebApplication app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (var scope = scopedFactory!.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<SeedDb>();
+        service!.SeedAsync().Wait();
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

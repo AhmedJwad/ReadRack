@@ -11,12 +11,13 @@ namespace ReadRack.Backend.Data
                 
         }
 
-        public DbSet<College> colleges { get; set; }
-
+        public DbSet<College> colleges { get; set; }      
+        public DbSet<Department>departments { get; set; }   
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<College>().HasIndex(c=>c.Name).IsUnique();
+            modelBuilder.Entity<Department>().HasIndex(c => c.Name).IsUnique();
         }
     }
 }
