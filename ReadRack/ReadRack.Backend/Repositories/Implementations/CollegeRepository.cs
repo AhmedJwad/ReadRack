@@ -15,10 +15,10 @@ namespace ReadRack.Backend.Repositories.Implementations
         private readonly DataContext _context;
         private readonly IFileStorage _fileStorage;
 
-        public CollegeRepository(DataContext context):base(context)
+        public CollegeRepository(DataContext context , IFileStorage fileStorage):base(context)
         {
            _context = context;
-           
+           _fileStorage = fileStorage;
         }
         public async Task<ActionResponse<College>> AddFullAsync(College college)
         {
@@ -81,7 +81,7 @@ namespace ReadRack.Backend.Repositories.Implementations
                 currentcollege.Photo = !string.IsNullOrEmpty(college.Photo) && college.Photo != currentcollege.Photo ? college.Photo :
                     currentcollege.Photo;
 
-                _context.Update(college);
+                _context.Update(currentcollege);
                 await _context.SaveChangesAsync();
                 return new ActionResponse<College>
                 {

@@ -1,0 +1,13 @@
+﻿<EditForm Model="@college" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label>College Name:</label>
+        <InputText @bind-Value="college.Name" />
+    </div>
+
+
+
+    <button type="submit">Submit</button>
+</EditForm>

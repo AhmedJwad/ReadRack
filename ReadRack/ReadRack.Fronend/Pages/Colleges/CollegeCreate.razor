@@ -1,0 +1,45 @@
+﻿@page "/colleges/create"
+
+@if (loading)
+{
+    <Loading />
+}
+else
+{
+    <div class="mb-3">
+        @if (!string.IsNullOrEmpty(alertMessage))
+        {
+            <div class="alert @alertType alert-dismissible fade show" role="alert">
+                @alertMessage
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    </div>
+
+    <EditForm Model="college" OnValidSubmit="CreteCollegeAsync">
+        <DataAnnotationsValidator />
+        <div class="card-header">
+            <span>
+                <i class="bi bi-box2" /> Create New College
+                <a class="btn btn-sm btn-success float-end" href="/colleges"><i class="bi bi-arrow-left" /> Return</a>
+                <button class="btn btn-sm btn-primary float-end mx-2" type="submit"><i class="bi bi-floppy" /> Save Changes</button>
+            </span>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label> Name:</label>
+                    <div>
+                        <InputText class="form-control" @bind-Value="@college.Name" />
+                        <ValidationMessage For="@(() => college.Name)" />
+                    </div>
+                </div>
+              
+                <InputImg Label="Photo" ImageSelected="@ImageSelected" ImageURL="@imageUrl" />
+            </div>
+        </div>
+      
+    </EditForm>
+    
+}

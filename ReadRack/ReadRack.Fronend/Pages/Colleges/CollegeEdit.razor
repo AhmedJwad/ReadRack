@@ -1,0 +1,39 @@
+﻿@page "/colleges/edit/{Id:int}"
+
+<h3>CountryEdit</h3>
+
+@if (college is null)
+{
+    <Loading />
+}
+else
+{
+    <EditForm Model="college" OnValidSubmit="EditAsync">
+        <DataAnnotationsValidator />
+        <div class="card">
+            <div class="card-header">
+                <span>
+                    <i class="bi bi-person" /> Edit college                 
+                    <button class="btn btn-sm btn-primary float-end mx-2" type="submit"><i class="bi bi-floppy" /> Save</button>
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label> Name:</label>
+                            <div>
+                                <InputText class="form-control" @bind-Value="@college.Name" />
+                                <ValidationMessage For="@(() => college.Name)" />
+                            </div>
+                        </div>
+                       
+                        <div class="mb-3">
+                            <InputImg Label="Photo" ImageSelected="ImageSelected" ImageURL="@imageUrl" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+}
