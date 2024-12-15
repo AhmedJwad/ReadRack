@@ -38,7 +38,7 @@ namespace ReadRack.Fronend.Pages.Colleges
           
             loading = true;
 
-            var responseHttp = await repository.PostAsync<College>("/api/Colleges/full",college);
+            var responseHttp = await repository.PostAsync("/api/Colleges/full",college);
             loading = false;
 
             if (responseHttp.Error)

@@ -23,5 +23,7 @@ namespace ReadRack.Shared.Entites
         [Display(Name = "Departments")]
         public int DepartmentNumber => Departments == null || Departments.Count == 0 ? 0 : Departments.Count;
 
+        public ICollection<User>? Users { get; set; }
+
     }
 }

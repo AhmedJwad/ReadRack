@@ -1,0 +1,39 @@
+﻿@page "/colleges/details/{collegeId:int}"
+
+@if (loading)
+{
+    <Loading />
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            <span>
+                <i class="bi bi-star" /> @college!.Name
+                <a class="btn btn-sm btn-success float-end" href="/colleges"><i class="bi bi-arrow-left" /> Return
+                    </a>
+            </span>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label>Name:</label>
+                        <div>
+                            <b>@college.Name</b>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>Photo:</label>
+                        <div>
+                            <b><img src="https://localhost:7186/@(college.Photo)" alt="Image" style="max-width: 150px; max-height: 150px;" /></b>
+                        </div>
+                    </div>
+                     
+                </div>
+               
+            </div>
+           
+        </div>
+    </div>
+}

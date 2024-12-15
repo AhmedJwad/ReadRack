@@ -2,6 +2,7 @@
 using Blazored.Modal;
 using Blazored.Modal.Services;
 using CurrieTechnologies.Razor.SweetAlert2;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using ReadRack.Fronend.Repositories;
 using ReadRack.Shared.Entites;
@@ -9,6 +10,7 @@ using System.Diagnostics.Metrics;
 
 namespace ReadRack.Fronend.Pages.Colleges
 {
+    [Authorize(Roles = "Admin")]
     public partial class CollegesIndex
     {
         private int currentPage = 1;
